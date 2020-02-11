@@ -3,8 +3,8 @@ def select_books_titles_and_years_in_first_series_order_by_year
     FROM books
     JOIN series
     ON series_id = series.id
+    WHERE series.id = (SELECT id FROM series LIMIT 1)
     ORDER BY year ASC
-    LIMIT 3
   
   "
 end
@@ -58,7 +58,5 @@ def select_character_names_and_number_of_books_they_are_in
   ON characters.id = character_books.character_id
   GROUP BY characters.name
   ORDER BY book_appearance_count DESC
-
-  
   "
 end
